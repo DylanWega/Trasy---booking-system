@@ -1,26 +1,48 @@
 package com.example.trasy;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+import Model.Customer;
 
-//class DatabaseHelper extends SQLiteOpenHelper {
-
-    /*private Context context;
-    //public DatabaseHelper(@Nullable Context context) {
-        //super(context, name, factory, version);
-   // }
-/*
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query = "Create table";
+//Create database
+public class DatabaseHelper extends SQLiteOpenHelper {
+    public DatabaseHelper(@Nullable Context context) {
+        super(context, "Login.db", null, 1);
     }
 
+    //create the table
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("Create Table Customer(" +
+                "lastname varchar," +
+                "firstname varchar," +
+                "password varchar," +
+                "email varchar," +
+                "dob Date," +
+                "passportNo varchar)");
+    }
+//update database
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
+    void Insertdata(String lname, String fname, String pwd, String email, String dob, String passportNo ){
+        //open the database
+        SQLiteDatabase ss = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("lastname", lname);
+        contentValues.put("firstname", fname);
+        contentValues.put("password", pwd);
+        contentValues.put("email", email);
+        contentValues.put("dob", dob);
+        contentValues.put("passportNO",passportNo);
+
+        ss.insert("Customer",null,contentValues);
+    }
 }
-*/
+
