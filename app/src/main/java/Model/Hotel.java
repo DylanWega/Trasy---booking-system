@@ -1,4 +1,4 @@
-package com.example.trasy;
+package Model;
 
 public class Hotel {
     String hotel_id;
