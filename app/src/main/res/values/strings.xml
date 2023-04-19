@@ -1,13 +1,19 @@
 <resources>
     //home page
     <string name="app_name">Trasy</string>
-    <string name="labelpassword">Password</string>
-    <string name="txtPassword"></string>
+    <string name="labelPassword">Password</string>
+    <string name="txtPassword"> </string>
     <string name="loginBtn">Login</string>
     <string name="txtEmail"> </string>
     <string name="labelEmail">Email</string>
     <string name="signupBtn">Sign Up</string>
     <string name="email_address">Email address</string>
     <string name="enter_password">Enter password</string>
+    <string name="book_hotel_txt">Book a Hotel</string>
+    <string name="enter_destination"> </string>
+    <string name="choose_hotel">Choose a hotel</string>
+    <string name="checkIn">Check-in</string>
+    <string name="checkOut">Check-out</string>
+    <string name="guests_and_rooms">Guests and rooms</string>
 
 </resources>

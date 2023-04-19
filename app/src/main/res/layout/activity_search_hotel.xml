@@ -6,4 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".SearchHotel">
 
+    <TextView
+        android:id="@+id/textViewBookHtl"
+        android:layout_width="192dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="228dp"
+        android:layout_marginEnd="127dp"
+        android:text="@string/book_hotel_txt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Book a hotel" />
+
+    <EditText
+        android:id="@+id/editTextEnterHotel"
+        android:layout_width="166dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="350dp"
+        android:autofillHints="Choose a destination"
+        android:ems="10"
+        android:hint="@string/choose_hotel"
+        android:inputType="text"
+        android:text="@string/enter_destination"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonCheckIn"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="346dp"
+        android:text="@string/checkIn"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextEnterHotel"
+        tools:text="Check-in" />
+
+    <Button
+        android:id="@+id/buttonGuestsNRooms"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="285dp"
+        android:layout_marginBottom="248dp"
+        android:text="@string/guests_and_rooms"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonCheckOut"
+        android:layout_width="95dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="23dp"
+        android:text="@string/checkOut"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGuestsNRooms"
+        app:layout_constraintStart_toEndOf="@+id/buttonCheckIn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
