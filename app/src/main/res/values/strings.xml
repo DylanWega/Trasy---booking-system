@@ -15,5 +15,8 @@
     <string name="checkIn">Check-in</string>
     <string name="checkOut">Check-out</string>
     <string name="guests_and_rooms">Guests and rooms</string>
+    <string name="number_of_adults"> Number of adults</string>
+    <string name="number_of_children"> Number of children </string>
+    <string name="number_of_rooms"> Number of rooms</string>
 
 </resources>
