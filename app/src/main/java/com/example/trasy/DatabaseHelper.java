@@ -4,9 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import Model.Customer;
+import androidx.appcompat.app.AppCompatActivity;
 
 //Create database
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -43,6 +44,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("passportNO",passportNo);
 
         ss.insert("Customer",null,contentValues);
+    }
+
+    public static class SearchHotel extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_search_hotel);
+        }
     }
 }
 

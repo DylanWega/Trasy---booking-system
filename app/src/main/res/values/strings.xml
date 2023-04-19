@@ -1,5 +1,6 @@
 <resources>
     //home page
+    <string name="app_name">Trasy</string>
     <string name="labelpassword">Password</string>
     <string name="txtPassword"></string>
     <string name="loginBtn">Login</string>
