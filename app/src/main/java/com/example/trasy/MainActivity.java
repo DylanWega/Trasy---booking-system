@@ -9,11 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.trasy.data.CreateAccountActivity;
+import com.example.trasy.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
 
     EditText email, password;
     Button signup, login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +27,14 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.txtPassword);
         signup = (Button) findViewById(R.id.signupBtn);
         login = (Button) findViewById(R.id.loginBtn);
+
         DatabaseHelper DB = new DatabaseHelper(this);
-        signup.setOnClickListener(new View.OnClickListener() {
+         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -42,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     Boolean checkUser = DB.checkEmailnPassword(em,pwd);
                     if(checkUser == true){
-                        Toast.makeText(MainActivity.this, "Sign in Successfull", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Homepage.class);
                         startActivity(intent);
                     }
