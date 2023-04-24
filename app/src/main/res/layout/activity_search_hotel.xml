@@ -8,15 +8,12 @@
 
     <TextView
         android:id="@+id/textViewBookHtl"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
+        android:layout_width="238dp"
+        android:layout_height="49dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="180dp"
-        android:layout_marginEnd="127dp"
         android:text="@string/book_hotel_txt"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Book a hotel" />
@@ -39,32 +36,35 @@
         android:id="@+id/editTextCheckInDate"
         android:layout_width="115dp"
         android:layout_height="48dp"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="51dp"
         android:layout_marginBottom="352dp"
         android:ems="10"
         android:hint="@string/checkIn"
+        android:importantForAutofill="no"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextEnterHotel"
         app:layout_constraintTop_toBottomOf="@+id/textViewBookHtl"
-        app:layout_constraintVertical_bias="1.0"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editTextCheckOutDate"
         android:layout_width="107dp"
         android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="338dp"
+        android:layout_marginTop="51dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/checkOut"
+        android:importantForAutofill="no"
         android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/editTextCheckInDate"
         app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.498" />
 
     <EditText
         android:id="@+id/editTextAdultNo"
