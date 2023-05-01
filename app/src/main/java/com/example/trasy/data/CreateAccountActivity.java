@@ -34,7 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.txtEmailAd);
         passportno = (EditText) findViewById(R.id.txtPassportNo);
         date = (EditText) findViewById(R.id.txtDate);
-
+        addCustomer = (Button) findViewById(R.id.createBtn);
         DatabaseHelper myDB = new DatabaseHelper(this);
 
         addCustomer.setOnClickListener(new View.OnClickListener() {

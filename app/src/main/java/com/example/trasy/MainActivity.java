@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.trasy.data.CreateAccountActivity;
-import com.example.trasy.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.txtEmail);
         password = (EditText) findViewById(R.id.txtPassword);
-        signup = (Button) findViewById(R.id.signupBtn);
+        signup = findViewById(R.id.btnSignup);
         login = (Button) findViewById(R.id.loginBtn);
 
         DatabaseHelper DB = new DatabaseHelper(this);

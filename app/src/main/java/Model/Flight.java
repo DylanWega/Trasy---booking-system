@@ -11,7 +11,7 @@ public class Flight {
     String arrivalCountry;
     Date arrivalDate;
     Time arrivalTime;
-    Double price;
+    String price;
 
     public Flight(){
 
@@ -73,22 +73,18 @@ public class Flight {
         this.arrivalTime = arrivalTime;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Flight(String flight_no, Date depDate, Time depTime, String depCountry, String arrivalCountry, Date arrivalDate, Time arrivalTime, Double price) {
-        this.flight_no = flight_no;
+    public Flight(Date depDate, String depCountry, String arrivalCountry, String price) {
         this.depDate = depDate;
-        this.depTime = depTime;
         this.depCountry = depCountry;
         this.arrivalCountry = arrivalCountry;
-        this.arrivalDate = arrivalDate;
-        this.arrivalTime = arrivalTime;
         this.price = price;
 
 

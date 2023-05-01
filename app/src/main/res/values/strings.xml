@@ -5,7 +5,6 @@
     <string name="loginBtn">Login</string>
     <string name="txtEmail"> </string>
     <string name="labelEmail">Email</string>
-    <string name="signupBtn">Sign Up</string>
     <string name="email_address">Email address</string>
     <string name="enter_password">Enter password</string>
     <string name="title_activity_login_trial">LoginActivityTrial</string>
@@ -24,5 +23,16 @@
     <string name="date_of_birth">Date of birth</string>
     <string name="create_account">Create Account</string>
     <string name="txtPwd">Password</string>
+    <string name="sign_up">sign up</string>
+    <string name="flights">Flights</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="depart_date">Depart date</string>
+    <string name="return_date">Return date</string>
+    <string name="search">Search</string>
+    <string name="origin">Origin</string>
+    <string name="arrive">Arrive</string>
+    <string name="flightprice">FlightPrice</string>
+
 
 </resources>

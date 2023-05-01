@@ -12,9 +12,9 @@
         android:layout_width="311dp"
         android:layout_height="641dp"
         android:orientation="vertical"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="3dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="45dp">
 
         <TextView
             android:id="@+id/textView"
