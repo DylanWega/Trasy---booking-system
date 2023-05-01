@@ -6,53 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".SearchHotel">
 
-    <TextView
-        android:id="@+id/textViewBookHtl"
-        android:layout_width="238dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="180dp"
-        android:text="@string/book_hotel_txt"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Book a hotel" />
-
-    <EditText
-        android:id="@+id/editTextEnterHotel"
-        android:layout_width="158dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="352dp"
-        android:autofillHints="Choose a destination"
-        android:ems="10"
-        android:hint="@string/choose_hotel"
-        android:inputType="text"
-        android:text="@string/enter_destination"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/editTextCheckInDate"
         android:layout_width="115dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginBottom="352dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/checkIn"
         android:importantForAutofill="no"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextEnterHotel"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBookHtl"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <EditText
+        android:id="@+id/editTextAdultNo"
+        android:layout_width="165dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="18dp"
+        android:ems="10"
+        android:hint="@string/number_of_adults"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextChildNo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEnterHotel" />
+
+    <EditText
+        android:id="@+id/editTextChildNo"
+        android:layout_width="168dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="468dp"
+        android:ems="10"
+        android:hint="@string/number_of_children"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextCheckOutDate"
         android:layout_width="107dp"
         android:layout_height="48dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="37dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="32dp"
         android:ems="10"
@@ -64,45 +66,51 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/editTextCheckInDate"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
-
-    <EditText
-        android:id="@+id/editTextAdultNo"
-        android:layout_width="165dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:hint="@string/number_of_adults"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextChildNo"
-        app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.089" />
 
     <EditText
         android:id="@+id/editTextRoomNo"
         android:layout_width="165dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginBottom="286dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="520dp"
         android:ems="10"
         android:hint="@string/number_of_rooms"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintStart_toEndOf="@+id/editTextAdultNo"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCheckOutDate" />
 
     <EditText
-        android:id="@+id/editTextChildNo"
-        android:layout_width="168dp"
-        android:layout_height="49dp"
+        android:id="@+id/editTextEnterHotel"
+        android:layout_width="158dp"
+        android:layout_height="48dp"
         android:layout_marginStart="4dp"
-        android:layout_marginBottom="217dp"
+        android:layout_marginTop="37dp"
+        android:autofillHints="Choose a destination"
         android:ems="10"
-        android:hint="@string/number_of_children"
-        android:inputType="textPersonName"
+        android:hint="@string/choose_hotel"
+        android:inputType="text"
+        android:text="@string/enter_destination"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <TextView
+        android:id="@+id/textViewBookHtl"
+        android:layout_width="194dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/book_hotel_txt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Book a hotel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
