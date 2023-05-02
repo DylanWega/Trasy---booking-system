@@ -17,7 +17,10 @@ import com.example.trasy.R;
 import com.example.trasy.data.RetrofitClient;
 import com.example.trasy.data.postAdapter;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,57 +77,53 @@ public class flightList extends AppCompatActivity {
                 String departureDate = departDate.getText().toString();
                 String returningDate = returnDate.getText().toString();
 
-                String url = "https://skyscanner44.p.rapidapi.com/fly-to-country?"
-                        + "destination=" + arrival
-                        + "&origin=" + departure
-                        + "&departureDate=" + departureDate
-                        + "&returnDate=" + returningDate
-                        + "&currency=EUR"
-                        + "&locale=en-GB"
-                        + "&country=UK";
+                String url = "https://partners.api.skyscanner.net/apiservices/v3/flights/indicative/search?market=UK&locale=en-GB&currency=GBP";
 
-                // Create an HTTP request for the API endpoint
                 OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, "{\r\n  \"query\": {\r\n    \"currency\": \"GBP\",\r\n    \"locale\": \"en-GB\",\r\n    \"market\": \"UK\",\r\n    \"dateTimeGroupingType\": \"DATE_TIME_GROUPING_TYPE_BY_DATE\",\r\n    \"queryLegs\": [\r\n      {\r\n        \"originPlace\": {\r\n          \"queryPlace\": {\r\n           \r\n            \"iata\": \"LHR\"\r\n          }\r\n        },\r\n        \"destinationPlace\": {\r\n          \"queryPlace\": {\r\n            \r\n            \"iata\": \"CDG\"\r\n          }\r\n        },\r\n      \r\n        \"date_range\": {\r\n          \"startDate\": {\r\n            \"year\": 2023,\r\n            \"month\": 11\r\n          },\r\n          \"endDate\": {\r\n            \"year\": 2023,\r\n            \"month\": 11\r\n          }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}");
                 Request request = new Request.Builder()
-                        .url(url)
-                        .get()
-                        .addHeader("content-type", "application/octet-stream")
-                        .addHeader("X-RapidAPI-Key", "21393f3b8bmsh620bcf0dfdd46e3p1d3dc6jsnff75302c6049")
-                        .addHeader("X-RapidAPI-Host", "skyscanner44.p.rapidapi.com")
+                        .url("https://partners.api.skyscanner.net/apiservices/v3/flights/indicative/search?market=UK&locale=en-GB&currency=GBP")
+                        .post(body)
+                        .addHeader("Accept", "*/*")
+                        .addHeader("User-Agent", "Thunder Client (https://www.thunderclient.com)")
+                        .addHeader("x-api-key", "prtl6749387986743898559646983194")
+                        .addHeader("Content-Type", "application/json")
                         .build();
 
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        // Handle network error
+                        e.printStackTrace();
+                    }
 
-                    client.newCall(request).enqueue(new Callback() {
-                        @Override
-                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                            e.printStackTrace();
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            String json = response.body().string();
+                            Gson gson = new Gson();
+                            Flight flight = gson.fromJson(json, Flight.class);
+                            runOnUiThread(() -> {
+                                progressBar.setVisibility(View.VISIBLE);
+                                theFlightList.add(flight);
+                                depart.setText(flight.toString());
+                                adapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                            });
+                        } else {
+                            // Handle unsuccessful response
+                            System.out.println("Unsuccessful response: " + response.code());
                         }
-
-                        @Override
-                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (response.isSuccessful() && response.body() != null) {
-                                            progressBar.setVisibility(View.VISIBLE);
-                                            String responseBody = null;
-                                            try {
-                                                responseBody = response.body().string();
-                                            } catch (IOException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                            List<Flight> flights = new Gson().fromJson(responseBody, new TypeToken<List<Flight>>(){}.getType());
-                                            theFlightList.addAll(flights);
-                                            adapter.notifyDataSetChanged();
-                                            progressBar.setVisibility(View.GONE);
-                                        }
-
-                                    }
-                                });
-                        }
-                    });
                     }
                 });
+            }
+
+        });
+
+
 
     }
 
