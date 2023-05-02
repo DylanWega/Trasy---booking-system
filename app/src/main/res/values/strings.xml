@@ -18,5 +18,6 @@
     <string name="number_of_adults"> Number of adults</string>
     <string name="number_of_children"> Number of children </string>
     <string name="number_of_rooms"> Number of rooms</string>
+    <string name="button_find_hotel">Find Hotels</string>
 
 </resources>
