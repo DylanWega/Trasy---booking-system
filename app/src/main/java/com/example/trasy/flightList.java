@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -102,14 +104,41 @@ public class flightList extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         if (response.isSuccessful() && response.body() != null) {
+                            //flight object
+                            Flight flight;
+                            //JSON object to hold the response results
+                            JSONObject jsonResponse;
+                            // conversion will not work without try catch
+                            try {
+                                // convert response results to JSON object literal
+                                jsonResponse = new JSONObject(response.body().string());
+                                //String jsonString = response.body().string();
+                                //JSONArray jsonArray = new JSONArray(jsonResponse);
+                                // to see the contents of the updated JSON object literal in the console
+                                System.out.println(jsonResponse);
 
-                            String json = response.body().string();
+                                // origin, arrive and flight price
+                                flight = new Flight();
+
+                                // get the dep country index
+                                //JSONObject depCountry = jsonArray.getJSONObject(5);
+
+                                // set the origin country
+                                flight.setDepCountry(String.valueOf(jsonResponse.getString("status")));
+                                // set the arrival country
+                                //flight.setArrivalCountry(jsonResponse.getString("destinationPlaceId"));
+                                // set the flight price
+                                //flight.setPrice(jsonResponse.getString("amount"));
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                            /*String json = response.body().string();
                             Gson gson = new Gson();
-                            Flight flight = gson.fromJson(json, Flight.class);
+                            Flight flight = gson.fromJson(json, Flight.class);*/
                             runOnUiThread(() -> {
                                 progressBar.setVisibility(View.VISIBLE);
                                 theFlightList.add(flight);
-                                depart.setText(flight.toString());
                                 adapter.notifyDataSetChanged();
                                 progressBar.setVisibility(View.GONE);
                             });
