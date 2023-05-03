@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trasy"
         tools:targetApi="31">
+
+        <activity
+            android:name=".flightList"
+            android:exported="true" />
+        <activity
+            android:name=".data.CreateAccountActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Homepage"
+            android:exported="false" />
+
         <activity
             android:name=".SearchHotel"
             android:exported="true" /> <!--change from false to true to enable Search hotel activity run-->

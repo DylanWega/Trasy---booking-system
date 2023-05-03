@@ -2,24 +2,24 @@ package com.example.trasy;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import Model.Customer;
 
 //Create database
 public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "Login.db", null, 1);
+        super(context, "TrasyDB.db", null, 1);
     }
 
     //create the table
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create Table Customer(" +
-                "lastname varchar," +
+        sqLiteDatabase.execSQL("Create Table Customers(" +
+                "lastname varchar PRIMARY KEY," +
                 "firstname varchar," +
                 "password varchar," +
                 "email varchar," +
@@ -32,9 +32,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    void Insertdata(String lname, String fname, String pwd, String email, String dob, String passportNo ){
+    public boolean Insertdata(String lname, String fname, String pwd, String email, String dob, String passportNo ){
         //open the database
-        SQLiteDatabase ss = this.getWritableDatabase();
+        SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("lastname", lname);
         contentValues.put("firstname", fname);
@@ -43,16 +43,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("dob", dob);
         contentValues.put("passportNO",passportNo);
 
-        ss.insert("Customer",null,contentValues);
+        myDB.insert("Customers",null,contentValues);
+        long result = myDB.insert("Customers",null,contentValues);
+        if(result==-1) return false;
+        else
+            return true;
     }
 
-    public static class SearchHotel extends AppCompatActivity {
+    public boolean checkEmail (String email){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("Select * from Customers where email = ?", new String[]{email});
+        if(cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_search_hotel);
-        }
+    public Boolean checkEmailnPassword(String email, String password){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("select * from Customers where email = ? and password = ?", new String[]{email, password});
+        if(cursor.getCount()>0)
+            return true;
+        else
+            return false;
     }
 }
 

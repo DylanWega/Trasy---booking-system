@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#03045e">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:id="@+id/txtOrigin"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginHorizontal="50dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:text="@string/origin"
+            android:textColor="@color/white"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/txtArrive"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginHorizontal="50dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:text="@string/arrive"
+            android:textColor="@color/white"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/txtFlightPrice"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginHorizontal="50dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:text="@string/flightprice"
+            android:textColor="@color/white"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+</LinearLayout>
