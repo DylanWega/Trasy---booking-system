@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,11 +23,9 @@
         <activity
             android:name=".Homepage"
             android:exported="false" />
-
         <activity
             android:name=".SearchHotel"
-            android:exported="true" /> <!--change from false to true to enable Search hotel activity run-->
-
+            android:exported="true" /> <!-- change from false to true to enable Search hotel activity run -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

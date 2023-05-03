@@ -43,5 +43,6 @@
     <string name="number_of_children"> Number of children </string>
     <string name="number_of_rooms"> Number of rooms</string>
     <string name="button_find_hotel">Find hotels</string>
+    <string name="title_activity_recycler_view_hotel_list">RecyclerViewHotelListActivity</string>
 
 </resources>
