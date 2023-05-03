@@ -82,8 +82,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editTextAdultNo"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCheckOutDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCheckOutDate"
+        app:layout_constraintVertical_bias="0.545" />
 
     <EditText
         android:id="@+id/editTextEnterHotel"
@@ -91,12 +93,14 @@
         android:layout_height="48dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="37dp"
+        android:layout_marginEnd="8dp"
         android:autofillHints="Choose a destination"
         android:ems="10"
         android:hint="@string/choose_hotel"
         android:inputType="text"
         android:text="@string/enter_destination"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editTextCheckInDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.085" />
@@ -123,22 +127,18 @@
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_searchHotel"
         android:layout_width="378dp"
         android:layout_height="50dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:text="@string/button_find_hotel"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHotels"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextChildNo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextChildNo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

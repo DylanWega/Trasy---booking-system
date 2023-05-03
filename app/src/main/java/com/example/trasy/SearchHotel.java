@@ -1,13 +1,19 @@
 package com.example.trasy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -16,13 +22,13 @@ public class SearchHotel extends AppCompatActivity {
     // fields that will be displayed on search
     private String hotelName;
     private String hotelLocation;
-    private Button searchHotels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
 
+        Button searchHotels = findViewById(R.id.button_searchHotel);
         searchHotels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,11 +44,25 @@ public class SearchHotel extends AppCompatActivity {
                         .addHeader("X-RapidAPI-Host", "airbnb13.p.rapidapi.com")
                         .build();
 
-                try {
-                    Response response = client.newCall(request).execute();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        JSONObject hotelJsonResponse;
+                        try {
+                            if (response.body() != null) {
+                                hotelJsonResponse = new JSONObject(response.body().string());
+                                System.out.println(hotelJsonResponse);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
             }
         });
     }
