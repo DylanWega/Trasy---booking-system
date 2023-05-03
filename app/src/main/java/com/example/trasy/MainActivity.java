@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = (EditText) findViewById(R.id.txtEmail);
-        password = (EditText) findViewById(R.id.txtPassword);
+        email = findViewById(R.id.txtEmail);
+        password = findViewById(R.id.txtPassword);
         signup = findViewById(R.id.btnSignup);
-        login = (Button) findViewById(R.id.loginBtn);
+        login = findViewById(R.id.loginBtn);
 
         DatabaseHelper DB = new DatabaseHelper(this);
          signup.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please enter all fields",Toast.LENGTH_SHORT).show();
                 else{
                     Boolean checkUser = DB.checkEmailnPassword(em,pwd);
-                    if(checkUser == true){
+                    if(checkUser){
                         Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Homepage.class);
                         startActivity(intent);

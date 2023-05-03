@@ -28,13 +28,13 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        firstname = (EditText) findViewById(R.id.txtFname);
-        lastname = (EditText) findViewById(R.id.txtLname);
-        password = (EditText) findViewById(R.id.txtPwd);
-        email = (EditText) findViewById(R.id.txtEmailAd);
-        passportno = (EditText) findViewById(R.id.txtPassportNo);
-        date = (EditText) findViewById(R.id.txtDate);
-        addCustomer = (Button) findViewById(R.id.createBtn);
+        firstname = findViewById(R.id.txtFname);
+        lastname = findViewById(R.id.txtLname);
+        password = findViewById(R.id.txtPwd);
+        email = findViewById(R.id.txtEmailAd);
+        passportno = findViewById(R.id.txtPassportNo);
+        date = findViewById(R.id.txtDate);
+        addCustomer = findViewById(R.id.createBtn);
         DatabaseHelper myDB = new DatabaseHelper(this);
 
         addCustomer.setOnClickListener(new View.OnClickListener() {
@@ -55,13 +55,13 @@ public class CreateAccountActivity extends AppCompatActivity {
                 else{
                     Boolean checkUser = myDB.checkEmail(emailValue);
                     //check of user exist
-                    if (checkUser == true) {
+                    if (checkUser) {
                         Toast.makeText(CreateAccountActivity.this, "User already exist", Toast.LENGTH_SHORT).show();
                     }
                     //insert customer to the database
                         else{
                                 Boolean insert = myDB.Insertdata(lname,fname,pwd,emailValue,dateValue,passno);
-                                if(insert == true) {
+                                if(insert) {
                                     Toast.makeText(CreateAccountActivity.this, "Welcome to Tasy", Toast.LENGTH_SHORT).show();
                                     //show home page after creation of account
                                     Intent intent = new Intent(getApplicationContext(), Homepage.class);

@@ -54,14 +54,14 @@ public class flightList extends AppCompatActivity {
 
         //client = new OkHttpClient();
 
-        depart = (EditText) findViewById(R.id.txtDeparture);
-        arrive = (EditText) findViewById(R.id.txtDestination);
-        departDate = (EditText) findViewById(R.id.txtdepartDate);
-        returnDate = (EditText) findViewById(R.id.txtreturnDate);
+        depart = findViewById(R.id.txtDeparture);
+        arrive = findViewById(R.id.txtDestination);
+        departDate = findViewById(R.id.txtdepartDate);
+        returnDate = findViewById(R.id.txtreturnDate);
 
-        searchFlight = (Button) findViewById(R.id.searchBtn);
-        recyclerView = (RecyclerView) findViewById(R.id.reyclerView);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        searchFlight = findViewById(R.id.searchBtn);
+        recyclerView = findViewById(R.id.reyclerView);
+        progressBar = findViewById(R.id.progressBar);
         layoutManager = new LinearLayoutManager(this);
 
         //set the layout manager on the t recycler view
@@ -124,7 +124,7 @@ public class flightList extends AppCompatActivity {
                                 //JSONObject depCountry = jsonArray.getJSONObject(5);
 
                                 // set the origin country
-                                flight.setDepCountry(String.valueOf(jsonResponse.getString("status")));
+                                flight.setDepCountry(jsonResponse.getString("status"));
                                 // set the arrival country
                                 //flight.setArrivalCountry(jsonResponse.getString("destinationPlaceId"));
                                 // set the flight price

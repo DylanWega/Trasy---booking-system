@@ -45,27 +45,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         myDB.insert("Customers",null,contentValues);
         long result = myDB.insert("Customers",null,contentValues);
-        if(result==-1) return false;
-        else
-            return true;
+        return result != -1;
     }
 
     public boolean checkEmail (String email){
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("Select * from Customers where email = ?", new String[]{email});
-        if(cursor.getCount() > 0)
-            return true;
-        else
-            return false;
+        return cursor.getCount() > 0;
     }
 
     public Boolean checkEmailnPassword(String email, String password){
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("select * from Customers where email = ? and password = ?", new String[]{email, password});
-        if(cursor.getCount()>0)
-            return true;
-        else
-            return false;
+        return cursor.getCount() > 0;
     }
 }
 

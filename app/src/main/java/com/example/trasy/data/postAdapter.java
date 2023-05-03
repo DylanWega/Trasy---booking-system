@@ -19,7 +19,7 @@ import Model.Flight;
 
 public class postAdapter extends RecyclerView.Adapter<postAdapter.ViewHolder> {
 
-    private List<Flight> theFlightList;
+    private final List<Flight> theFlightList;
 
     public postAdapter(List<Flight> theFlightList) {
         this.theFlightList = theFlightList;
