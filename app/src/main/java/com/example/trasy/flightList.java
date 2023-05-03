@@ -27,6 +27,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -117,14 +119,52 @@ public class flightList extends AppCompatActivity {
                                 // to see the contents of the updated JSON object literal in the console
                                 System.out.println(jsonResponse);
 
-                                // origin, arrive and flight price
+                                // creating flight object
                                 flight = new Flight();
 
                                 // get the dep country index
                                 //JSONObject depCountry = jsonArray.getJSONObject(5);
 
                                 // set the origin country
-                                flight.setDepCountry(String.valueOf(jsonResponse.getString("status")));
+                                JSONArray jsonFlightList = jsonResponse.toJSONArray(jsonResponse.names());
+
+                                //declaring result json object to store "quotes object"
+                                JSONObject result = jsonResponse.getJSONObject("content").
+                                                    getJSONObject("results").getJSONObject("quotes");
+
+                               // flight.setDepCountry(String.valueOf(result));
+                                //a for loop to traverse "quotes object"
+                                for (Iterator<String> it = result.keys(); it.hasNext(); ) {
+                                    String key = it.next();
+
+                                    //declaring an array and storing each index as from the *
+                                    String array[] = key.split("\\*");
+
+                                    String amt = result.getJSONObject(key).getJSONObject("minPrice").getString("amount");
+
+                                    //setting the index number to access each element
+                                   flight.setDepCountry(array[2]);
+                                    flight.setArrivalCountry(array[3]);
+                                    flight.setPrice(amt);
+                                    theFlightList.add(flight);
+
+                                }
+                                //Getting the json array node
+
+                                //looping through the response which is the flight info
+                                //for (int i = 0; i < jsonFlightList.length(); i++){
+                                    //JSONObject f = jsonFlightList.getJSONObject(i);
+                                    //String amount = f.getString("amount");
+
+                                    //tmp hash map for single contact
+                                    //HashMap<String, String> fs = new HashMap<>();
+                                    //fs.put("amount", amount);
+                                    //flight.getDepCountry(fs.get("amount"));
+                                    //flight.setDepCountry(amount);
+                               // }
+
+
+
                                 // set the arrival country
                                 //flight.setArrivalCountry(jsonResponse.getString("destinationPlaceId"));
                                 // set the flight price
