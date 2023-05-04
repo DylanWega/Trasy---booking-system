@@ -26,29 +26,31 @@
         android:id="@+id/editTextAdultNo"
         android:layout_width="165dp"
         android:layout_height="48dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="28dp"
         android:layout_marginBottom="18dp"
         android:ems="10"
         android:hint="@string/number_of_adults"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextChildNo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEnterHotel" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.237" />
 
     <EditText
         android:id="@+id/editTextChildNo"
         android:layout_width="168dp"
         android:layout_height="49dp"
         android:layout_marginStart="4dp"
-        android:layout_marginBottom="468dp"
         android:ems="10"
         android:hint="@string/number_of_children"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321" />
 
     <EditText
         android:id="@+id/editTextCheckOutDate"
@@ -72,20 +74,16 @@
         android:id="@+id/editTextRoomNo"
         android:layout_width="165dp"
         android:layout_height="48dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="520dp"
         android:ems="10"
         android:hint="@string/number_of_rooms"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/editTextAdultNo"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCheckOutDate"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.232" />
 
     <EditText
         android:id="@+id/editTextEnterHotel"
@@ -124,21 +122,21 @@
         android:layout_marginTop="284dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_searchHotel"
-        android:layout_width="378dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_width="167dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="25dp"
         android:text="@string/button_find_hotel"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextChildNo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.429" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

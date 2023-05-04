@@ -33,6 +33,7 @@
     <string name="origin">Origin</string>
     <string name="arrive">Arrive</string>
     <string name="flightprice">FlightPrice</string>
+    // hotel
     <string name="book_hotel_txt">Book a Hotel</string>
     <string name="enter_destination"> </string>
     <string name="choose_hotel">Choose a hotel</string>
@@ -43,6 +44,6 @@
     <string name="number_of_children"> Number of children </string>
     <string name="number_of_rooms"> Number of rooms</string>
     <string name="button_find_hotel">Find hotels</string>
-    <string name="title_activity_recycler_view_hotel_list">RecyclerViewHotelListActivity</string>
-
+    <string name="hotel_name">Hotel Name</string>
+    <string name="hotel_price">Price</string>
 </resources>

@@ -52,7 +52,9 @@ public class SearchHotel extends AppCompatActivity {
 
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        // field to hold the json format of the response
                         JSONObject hotelJsonResponse;
+                        // will not work without try/catch
                         try {
                             if (response.body() != null) {
                                 hotelJsonResponse = new JSONObject(response.body().string());
