@@ -46,4 +46,5 @@
     <string name="button_find_hotel">Find hotels</string>
     <string name="hotel_name">Hotel Name</string>
     <string name="hotel_price">Price</string>
+    <string name="Button_test">Test Button</string>
 </resources>
