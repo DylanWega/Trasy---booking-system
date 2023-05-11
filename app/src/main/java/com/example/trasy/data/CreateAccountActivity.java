@@ -62,9 +62,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                         else{
                                 Boolean insert = myDB.Insertdata(lname,fname,pwd,emailValue,dateValue,passno);
                                 if(insert == true) {
-                                    Toast.makeText(CreateAccountActivity.this, "Welcome to Tasy", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateAccountActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
                                     //show home page after creation of account
-                                    Intent intent = new Intent(getApplicationContext(), Homepage.class);
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                 }
                                 else{

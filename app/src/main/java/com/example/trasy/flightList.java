@@ -1,10 +1,14 @@
 package com.example.trasy;
 
+import static com.example.trasy.DatabaseHelper.breakThisDate;
+
 import  androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,12 +46,14 @@ public class flightList extends AppCompatActivity {
 
     OkHttpClient client;
     private Button searchFlight;
-    RecyclerView recyclerView;
+    RecyclerView recyclerview;
     ProgressBar progressBar;
     EditText depart, arrive, departDate, returnDate;
-    LinearLayoutManager layoutManager;
+    //LinearLayoutManager layoutManager;
     postAdapter adapter;
     List<Flight> theFlightList = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,39 +61,55 @@ public class flightList extends AppCompatActivity {
         setContentView(R.layout.activity_flight_list);
 
         //client = new OkHttpClient();
-
+        //declaring UI view id
         depart = (EditText) findViewById(R.id.txtDeparture);
         arrive = (EditText) findViewById(R.id.txtDestination);
         departDate = (EditText) findViewById(R.id.txtdepartDate);
-        returnDate = (EditText) findViewById(R.id.txtreturnDate);
 
         searchFlight = (Button) findViewById(R.id.searchBtn);
-        recyclerView = (RecyclerView) findViewById(R.id.reyclerView);
+        recyclerview = (RecyclerView) findViewById(R.id.reyclerView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        layoutManager = new LinearLayoutManager(this);
 
+
+        adapter = new postAdapter(this,theFlightList);
         //set the layout manager on the t recycler view
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new postAdapter(theFlightList);
-        recyclerView.setAdapter(adapter);
+        //recyclerview.setLayoutManager(layoutManager);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerview.setLayoutManager(layoutManager);
+        recyclerview.setItemAnimator(new DefaultItemAnimator());
+
+        //Here with the aid of constructor, I store info about the flight and departure date.
+        //This information will help me later to create the details of the booking
+
+        recyclerview.setAdapter(adapter);
 
 
         searchFlight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //empty the view if there is already something displayed in it
+                theFlightList.clear();
+                theFlightList.addAll(theFlightList);
+                adapter.notifyDataSetChanged();
+
                 String departure = depart.getText().toString();
                 String arrival = arrive.getText().toString();
                 String departureDate = departDate.getText().toString();
-                String returningDate = returnDate.getText().toString();
+
+
+                //Here we call the method defined in the DatabaseHelper to break the date into parts
+                String[] dateParts = breakThisDate(departureDate);
+                int month = Integer.parseInt(dateParts[1]);
+                int year = Integer.parseInt(dateParts[2]);
+                //String returningDate = returnDate.getText().toString();
 
                 String url = "https://partners.api.skyscanner.net/apiservices/v3/flights/indicative/search?market=UK&locale=en-GB&currency=GBP";
 
                 OkHttpClient client = new OkHttpClient();
 
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType, "{\r\n  \"query\": {\r\n    \"currency\": \"GBP\",\r\n    \"locale\": \"en-GB\",\r\n    \"market\": \"UK\",\r\n    \"dateTimeGroupingType\": \"DATE_TIME_GROUPING_TYPE_BY_DATE\",\r\n    \"queryLegs\": [\r\n      {\r\n        \"originPlace\": {\r\n          \"queryPlace\": {\r\n           \r\n            \"iata\": \"LHR\"\r\n          }\r\n        },\r\n        \"destinationPlace\": {\r\n          \"queryPlace\": {\r\n            \r\n            \"iata\": \"CDG\"\r\n          }\r\n        },\r\n      \r\n        \"date_range\": {\r\n          \"startDate\": {\r\n            \"year\": 2023,\r\n            \"month\": 11\r\n          },\r\n          \"endDate\": {\r\n            \"year\": 2023,\r\n            \"month\": 11\r\n          }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}");
-                Request request = new Request.Builder()
+                RequestBody body = RequestBody.create(mediaType, "{\r\n  \"query\": {\r\n    \"currency\": \"GBP\",\r\n    \"locale\": \"en-GB\",\r\n    \"market\": \"UK\",\r\n    \"dateTimeGroupingType\": \"DATE_TIME_GROUPING_TYPE_BY_DATE\",\r\n    \"queryLegs\": [\r\n      {\r\n        \"originPlace\": {\r\n          \"queryPlace\": {\r\n           \r\n            \"iata\": \""+departure+"\"\r\n          }\r\n        },\r\n        \"destinationPlace\": {\r\n          \"queryPlace\": {\r\n            \r\n            \"iata\": \""+arrival+"\"\r\n          }\r\n        },\r\n      \r\n        \"date_range\": {\r\n          \"startDate\": {\r\n            \"year\": "+year+",\r\n            \"month\": "+month+"\r\n          },\r\n          \"endDate\": {\r\n            \"year\": "+year+",\r\n            \"month\": "+month+"\r\n          }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}");                Request request = new Request.Builder()
                         .url("https://partners.api.skyscanner.net/apiservices/v3/flights/indicative/search?market=UK&locale=en-GB&currency=GBP")
                         .post(body)
                         .addHeader("Accept", "*/*")
@@ -132,9 +154,11 @@ public class flightList extends AppCompatActivity {
                                 JSONObject result = jsonResponse.getJSONObject("content").
                                                     getJSONObject("results").getJSONObject("quotes");
 
-                               // flight.setDepCountry(String.valueOf(result));
+
                                 //a for loop to traverse "quotes object"
+
                                 for (Iterator<String> it = result.keys(); it.hasNext(); ) {
+                                    Flight flight2 = new Flight();
                                     String key = it.next();
 
                                     //declaring an array and storing each index as from the *
@@ -143,32 +167,13 @@ public class flightList extends AppCompatActivity {
                                     String amt = result.getJSONObject(key).getJSONObject("minPrice").getString("amount");
 
                                     //setting the index number to access each element
-                                   flight.setDepCountry(array[2]);
-                                    flight.setArrivalCountry(array[3]);
-                                    flight.setPrice(amt);
-                                    theFlightList.add(flight);
+                                   flight2.setDepCountry(array[2]);
+                                    flight2.setArrivalCountry(array[3]);
+                                    flight2.setPrice(amt);
+                                    theFlightList.add(flight2);
 
                                 }
-                                //Getting the json array node
 
-                                //looping through the response which is the flight info
-                                //for (int i = 0; i < jsonFlightList.length(); i++){
-                                    //JSONObject f = jsonFlightList.getJSONObject(i);
-                                    //String amount = f.getString("amount");
-
-                                    //tmp hash map for single contact
-                                    //HashMap<String, String> fs = new HashMap<>();
-                                    //fs.put("amount", amount);
-                                    //flight.getDepCountry(fs.get("amount"));
-                                    //flight.setDepCountry(amount);
-                               // }
-
-
-
-                                // set the arrival country
-                                //flight.setArrivalCountry(jsonResponse.getString("destinationPlaceId"));
-                                // set the flight price
-                                //flight.setPrice(jsonResponse.getString("amount"));
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }

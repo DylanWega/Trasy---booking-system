@@ -74,22 +74,6 @@
             android:textColorHint="@color/white"
             tools:ignore="LabelFor" />
 
-        <EditText
-            android:id="@+id/txtreturnDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:ems="10"
-            android:hint="@string/return_date"
-            android:importantForAutofill="no"
-            android:inputType="date"
-            android:minHeight="48dp"
-            android:text="@string/return_date"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            tools:ignore="LabelFor" />
-
         <Button
             android:id="@+id/searchBtn"
             android:layout_width="match_parent"
@@ -102,12 +86,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reyclerView"
-        android:layout_width="409dp"
-        android:layout_height="416dp"
+        android:layout_width="368dp"
+        android:layout_height="367dp"
         android:scrollbars="horizontal"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="314dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints" />
 
     <ProgressBar
         android:id="@+id/progressBar"
