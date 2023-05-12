@@ -41,7 +41,7 @@
             tools:ignore="LabelFor" />
 
         <Button
-            android:id="@+id/bookHotelBtn"
+            android:id="@+id/bookThisHotelBtn"
             android:layout_width="123dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="130dp"

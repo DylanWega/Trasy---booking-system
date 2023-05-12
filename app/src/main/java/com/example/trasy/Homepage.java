@@ -17,6 +17,7 @@ public class Homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         bookFlightBtn = (Button) findViewById(R.id.bookFlightBtn);
+        bookHotelBtn = (Button) findViewById(R.id.bookHotelBtn);
         logout = (Button) findViewById(R.id.logoutBtn);
         SessionManager session = new SessionManager(getApplicationContext());
 
@@ -25,6 +26,14 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), flightList.class);
+                startActivity(intent);
+            }
+        });
+
+        bookHotelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchHotel.class);
                 startActivity(intent);
             }
         });

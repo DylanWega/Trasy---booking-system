@@ -95,7 +95,7 @@ public class HotelRecyclerAdapter extends RecyclerView.Adapter<HotelRecyclerAdap
             super(itemView);
             hotelName = itemView.findViewById(R.id.textViewHotelName);
             hotelPrice = itemView.findViewById(R.id.textViewHotelPrice);
-            bookHotel = itemView.findViewById(R.id.bookHotelBtn);
+            bookHotel = itemView.findViewById(R.id.bookThisHotelBtn);
         }
     }
 }
