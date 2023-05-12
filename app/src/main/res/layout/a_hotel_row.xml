@@ -6,9 +6,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutHotelList"
-        android:layout_width="match_parent"
-        android:layout_height="108dp"
-        android:layout_marginBottom="466dp"
+        android:layout_width="341dp"
+        android:layout_height="76dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="644dp"
+        android:background="#E4E1D8D8"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +24,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginEnd="70dp"
             android:text="@string/hotel_name"
-            android:textSize="34sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textViewHotelPrice"
@@ -31,6 +33,6 @@
             android:layout_marginStart="70dp"
             android:layout_marginEnd="70dp"
             android:text="@string/hotel_price"
-            android:textSize="34sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

@@ -8,7 +8,7 @@ public class Hotel {
     String country;
     String city;
     String address;
-    int price;
+    String price;
     int guest;
     String rating;
 
@@ -16,7 +16,7 @@ public class Hotel {
 
     }
 
-    public Hotel(String hotel_id, String hotelName, String check_in, String check_out, String country, String city, String address, int price, int guest, String rating) {
+    public Hotel(String hotel_id, String hotelName, String check_in, String check_out, String country, String city, String address, String price, int guest, String rating) {
         this.hotel_id = hotel_id;
         this.hotelName = hotelName;
         this.check_in = check_in;
@@ -85,11 +85,11 @@ public class Hotel {
         this.address = address;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

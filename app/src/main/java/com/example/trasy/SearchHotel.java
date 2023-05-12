@@ -1,13 +1,19 @@
 package com.example.trasy;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -81,11 +87,24 @@ public class SearchHotel extends AppCompatActivity {
                                 System.out.println(hotelJsonResponse);
                                 aHotel = new Hotel();
                                 JSONArray results = hotelJsonResponse.getJSONArray("results");
-                                JSONObject firstHotel = results.getJSONObject(0);
-                                String hotelName = firstHotel.getString("name");
+                                JSONObject firstHotelName = results.getJSONObject(0);
+                                String hotelName = firstHotelName.getString("name");
+                                JSONObject firstHotelPrice = results.getJSONObject(0).getJSONObject("price");
+                                String price = firstHotelPrice.getString("rate");
                                 aHotel.setHotelName(hotelName);
+                                aHotel.setPrice(price);
 
                             } catch (JSONException e) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(SearchHotel.this);
+                                builder.setTitle("Whoops")
+                                        .setMessage("Something went wrong. Please try again later")
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                View v = LayoutInflater.from(SearchHotel.this).inflate(R.layout.activity_search_hotel, (ViewGroup) findViewById(android.R.id.content), false);
+                                                ((ViewGroup) findViewById(android.R.id.content)).addView(v);
+                                            }
+                                        });
                                 throw new RuntimeException(e);
                             }
                             // display the view on the main UI thread
@@ -95,12 +114,6 @@ public class SearchHotel extends AppCompatActivity {
                                 public void run() {
                                     HotelList.add(aHotel);
                                     viewAdapter.notifyDataSetChanged();
-//                                System.out.println("Is it fetching the hotel name:" + aHotel.getHotelName());
-                                    if (aHotel.getHotelName().equals("")) {
-                                        Toast.makeText(SearchHotel.this, "Not getting the hotel name", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(SearchHotel.this, "Gets hotel name", Toast.LENGTH_SHORT).show();
-                                    }
                                 }
                             });
                         } else {
