@@ -42,7 +42,7 @@
     // hotel
     <string name="book_hotel_txt">Book a Hotel</string>
     <string name="enter_destination"> </string>
-    <string name="choose_hotel">Choose a hotel</string>
+    <string name="choose_location">Choose a location</string>
     <string name="checkIn">Check-in</string>
     <string name="checkOut">Check-out</string>
     <string name="guests_and_rooms">Guests and rooms</string>
@@ -53,5 +53,6 @@
     <string name="hotel_name">Hotel Name</string>
     <string name="hotel_price">Price</string>
     <string name="Button_test">Test Button</string>
+    <string name="book_hotel_button"> Book Hotel</string>
 
 </resources>

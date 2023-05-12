@@ -43,6 +43,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "price varchar ," +
                 "FOREIGN KEY(email) REFERENCES Customers(email))");
 
+        //create Hotel table
+        sqLiteDatabase.execSQL("Create Table Hotel(" +
+                "hotelId INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "hotelName varchar," +
+                "hotelPrice varchar ," +
+                "email varchar ," +
+                "FOREIGN KEY(email) REFERENCES Customers(email))");
+
         //create booking table
         sqLiteDatabase.execSQL("Create Table Bookings(" +
                 "serviceID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -73,6 +81,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         myDB.insert("Flight",null,contentValues);
         long result = myDB.insert("Flight",null,contentValues);
+        if(result==-1) return false;
+        else
+            return true;
+    }
+
+    //insert hotel info
+    public boolean InsertHotel(String hotelName, String emailAd, String hotelPrice){
+        //open the database
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("hotelName", hotelName);
+        contentValues.put("email", emailAd);
+        contentValues.put("hotelPrice", hotelPrice);
+
+        myDB.insert("Hotel",null,contentValues);
+        long result = myDB.insert("Hotel",null,contentValues);
         if(result==-1) return false;
         else
             return true;

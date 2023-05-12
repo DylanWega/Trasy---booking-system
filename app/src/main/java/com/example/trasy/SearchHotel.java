@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.trasy.data.HotelRecyclerAdapter;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import Model.Hotel;
@@ -46,22 +48,41 @@ public class SearchHotel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
 
+        EditText hotelName = findViewById(R.id.editTextEnterHotel);
+        EditText editTextCheckIn = findViewById(R.id.editTextCheckInDate);
+        EditText editTextCheckOut = findViewById(R.id.editTextCheckOutDate);
+        EditText adultNo = findViewById(R.id.editTextAdultNo);
+        EditText roomAmt = findViewById(R.id.editTextRoomNo);
+        EditText childrenNo = findViewById(R.id.editTextChildNo);
         Button searchHotels = findViewById(R.id.button_searchHotel);
         RecyclerView recyclerView;
         recyclerView = findViewById(R.id.recyclerViewHotels);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         // set the layout manager in the recycler view
         recyclerView.setLayoutManager(linearLayoutManager);
-        HotelRecyclerAdapter viewAdapter = new HotelRecyclerAdapter(HotelList);
+        HotelRecyclerAdapter viewAdapter = new HotelRecyclerAdapter(this, HotelList);
         recyclerView.setAdapter(viewAdapter);
         searchHotels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //empty the view if there is already something displayed in it
+                HotelList.clear();
+                HotelList.addAll(HotelList);
+                viewAdapter.notifyDataSetChanged();
+
+                String location = hotelName.getText().toString();
+                String checkIn = editTextCheckIn.getText().toString();
+                String checkOut = editTextCheckOut.getText().toString();
+                String numberOfAdults = adultNo.getText().toString();
+                String numberOfRooms = roomAmt.getText().toString();
+                String numberOfChildren = childrenNo.getText().toString();
+
                 // field for OkHttpClient
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
-                        .url("https://airbnb13.p.rapidapi.com/search-location?location=Paris&checkin=2023-09-16&checkout=2023-09-17&adults=1&children=0&infants=0&pets=0&page=1&currency=USD")
+                        .url("https://airbnb13.p.rapidapi.com/search-location?location=" + location + "&checkin=2023-09-16&checkout=2023-09-17&adults="+ numberOfAdults +"&children=" + numberOfChildren +"&infants=0&pets=0&page=1&currency=USD")
                         .get()
                         .addHeader("Accept", "*/*")
                         .addHeader("User-Agent", "Thunder Client (https://www.thunderclient.com)")
@@ -87,24 +108,21 @@ public class SearchHotel extends AppCompatActivity {
                                 System.out.println(hotelJsonResponse);
                                 aHotel = new Hotel();
                                 JSONArray results = hotelJsonResponse.getJSONArray("results");
-                                JSONObject firstHotelName = results.getJSONObject(0);
-                                String hotelName = firstHotelName.getString("name");
-                                JSONObject firstHotelPrice = results.getJSONObject(0).getJSONObject("price");
-                                String price = firstHotelPrice.getString("rate");
-                                aHotel.setHotelName(hotelName);
-                                aHotel.setPrice(price);
+
+                                for (int i = 0; i < results.length(); i++){
+                                    Hotel aHotel2 = new Hotel();
+
+                                    JSONObject firstHotelName = results.getJSONObject(i);
+                                    String hotelName = firstHotelName.getString("name");
+                                    JSONObject firstHotelPrice = results.getJSONObject(i).getJSONObject("price");
+                                    String price = firstHotelPrice.getString("rate");
+                                    aHotel2.setHotelName(hotelName);
+                                    aHotel2.setPrice(price);
+                                    HotelList.add(aHotel2);
+                                }
 
                             } catch (JSONException e) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SearchHotel.this);
-                                builder.setTitle("Whoops")
-                                        .setMessage("Something went wrong. Please try again later")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                View v = LayoutInflater.from(SearchHotel.this).inflate(R.layout.activity_search_hotel, (ViewGroup) findViewById(android.R.id.content), false);
-                                                ((ViewGroup) findViewById(android.R.id.content)).addView(v);
-                                            }
-                                        });
                                 throw new RuntimeException(e);
                             }
                             // display the view on the main UI thread
