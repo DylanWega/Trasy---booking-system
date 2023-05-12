@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.trasy.data.CreateAccountActivity;
+import com.example.trasy.data.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        //create instance of a session
+        SessionManager session = new SessionManager(getApplicationContext());
 
         email = findViewById(R.id.txtEmail);
         password = findViewById(R.id.txtPassword);
@@ -50,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                     Boolean checkUser = DB.checkEmailnPassword(em,pwd);
                     if(checkUser){
                         Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
+                        //create session upon login
+                        session.setLoggedIn("email",em);
                         Intent intent = new Intent(getApplicationContext(), Homepage.class);
                         startActivity(intent);
                     }
