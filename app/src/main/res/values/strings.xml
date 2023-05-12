@@ -1,11 +1,10 @@
 <resources>
     //home page
-    <string name="labelpassword" >Password</string>
+    <string name="labelPassword">Password</string>
     <string name="txtPassword"></string>
     <string name="loginBtn">Login</string>
     <string name="txtEmail"> </string>
     <string name="labelEmail">Email</string>
-    <string name="signupBtn">Sign Up</string>
     <string name="email_address">Email address</string>
     <string name="enter_password">Enter password</string>
     <string name="title_activity_login_trial">LoginActivityTrial</string>
@@ -18,5 +17,42 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="app_name">Trasy</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="passport_no">Passport No</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="create_account">Create Account</string>
+    <string name="txtPwd">Password</string>
+    <string name="sign_up">sign up</string>
+    <string name="flights">Flights</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="depart_date">Depart date</string>
+    <string name="return_date">Return date</string>
+    <string name="search">Search</string>
+    <string name="origin">Origin</string>
+    <string name="arrive">Arrive</string>
+    <string name="flightprice">FlightPrice</string>
+    <string name="book_flight">Book Flight</string>
+    <string name="welcomeMsg">Welcome !</string>
+    <string name="flight">Flight</string>
+    <string name="hotel">Hotel</string>
+    <string name="car">Car</string>
+    <string name="logout">logOut</string>
+    // hotel
+    <string name="book_hotel_txt">Book a Hotel</string>
+    <string name="enter_destination"> </string>
+    <string name="choose_location">Choose a location</string>
+    <string name="checkIn">Check-in</string>
+    <string name="checkOut">Check-out</string>
+    <string name="guests_and_rooms">Guests and rooms</string>
+    <string name="number_of_adults"> Number of adults</string>
+    <string name="number_of_children"> Number of children </string>
+    <string name="number_of_rooms"> Number of rooms</string>
+    <string name="button_find_hotel">Find hotels</string>
+    <string name="hotel_name">Hotel Name</string>
+    <string name="hotel_price">Price</string>
+    <string name="Button_test">Test Button</string>
+    <string name="book_hotel_button"> Book Hotel</string>
 
 </resources>
