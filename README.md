@@ -11,3 +11,11 @@ Java
 SQLite
 
 Skyscanner API
+
+---
+
+<p align="center">
+  <img src="App Interfaces.png" alt="Architecture Diagram" width="800">
+</p>
+
+
